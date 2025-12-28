@@ -40,11 +40,12 @@ export function middleware(request: NextRequest) {
   // Security headers
   // Allow Next.js inline scripts - Next.js generates inline scripts during build
   // that need to be allowed. Using 'unsafe-inline' in script-src-elem is safer
-  // than in script-src as it only affects <script> elements, not inline handlers
+  // than in script-src as it only affects <script> elements, not inline handlers.
+  // Note: 'strict-dynamic' and 'unsafe-inline' can't be used together in the same directive.
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    script-src-elem 'self' 'nonce-${nonce}' 'unsafe-inline' 'strict-dynamic';
+    script-src-elem 'self' 'nonce-${nonce}' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https:;
     font-src 'self' data:;
