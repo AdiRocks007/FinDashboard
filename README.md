@@ -236,14 +236,3 @@ Each widget type has specific settings:
 - Check that the symbol parameter is in the URL
 - Verify your API key is valid
 
-## 📝 License
-
-MIT License
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-**Built with ❤️ for the finance community**
