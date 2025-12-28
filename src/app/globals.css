@@ -12,15 +12,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Smooth theme transitions */
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-[#0a0e27] text-white;
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+  
+  .dark body {
+    @apply bg-[#0a0e27] text-white;
+  }
+  
+  .light body {
+    @apply bg-neutral-50 text-neutral-900;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar for dark mode */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) transparent;
+  }
+
+  .dark .scrollbar-thin {
+    scrollbar-color: rgb(75 85 99) transparent;
+  }
+
+  /* Webkit browsers */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-neutral-400 dark:bg-neutral-600 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-500 dark:bg-neutral-500;
+  }
+}
+
+/* Price change animations */
+@layer components {
+  .price-flash-up {
+    animation: priceUp 0.3s ease-out;
+  }
+
+  .price-flash-down {
+    animation: priceDown 0.3s ease-out;
+  }
+}
+
+/* Chart dark mode optimizations */
+.recharts-wrapper {
+  @apply dark:text-neutral-300;
+}
+
+.recharts-cartesian-grid line {
+  @apply dark:stroke-neutral-700;
+}
+
+.recharts-tooltip-wrapper {
+  @apply dark:bg-neutral-800 dark:border-neutral-700;
+}
+
+.recharts-tooltip-label {
+  @apply dark:text-neutral-200;
+}
+
+.recharts-legend-item-text {
+  @apply dark:text-neutral-300;
 }
